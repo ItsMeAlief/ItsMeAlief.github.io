@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <!-- Import Tailwind CSS from jsdelivr CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Import Font Awesome for icons -->
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Custom CSS - Minimal styling to complement Tailwind */
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Smooth scrolling for the entire page */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Container for all sections */
+        .section {
+            padding: 3rem 1.5rem;
+        }
+
+        /* Custom styling for section headings */
+        .section-heading {
+            position: relative;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        .section-heading:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: #3B82F6; /* Tailwind blue-500 */
+        }
+
+        /* Styling for the skills progress bars */
+        .skill-bar {
+            height: 10px;
+            background: #e9ecef;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .skill-progress {
+            height: 100%;
+            border-radius: 5px;
+            background-color: #3B82F6; /* Tailwind blue-500 */
+        }
+
+        /* Custom styling for project cards */
+        .project-card {
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Mobile menu styles */
+        .mobile-menu {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .desktop-menu {
+                display: none;
+            }
+            .mobile-menu-button {
+                display: block;
+            }
+            .mobile-menu.show {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header Section with Navigation -->
+    <header class="bg-white shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <!-- Logo/Name -->
+            <a href="#" class="text-xl font-bold text-blue-500">Your Name</a>
+            
+            <!-- Desktop Navigation Menu -->
+            <nav class="desktop-menu">
+                <ul class="flex space-x-6">
+                    <li><a href="#about" class="text-gray-600 hover:text-blue-500">About</a></li>
+                    <li><a href="#skills" class="text-gray-600 hover:text-blue-500">Skills</a></li>
+                    <li><a href="#projects" class="text-gray-600 hover:text-blue-500">Projects</a></li>
+                    <li><a href="#contact" class="text-gray-600 hover:text-blue-500">Contact</a></li>
+                </ul>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-button md:hidden">
+                <i class="fas fa-bars text-gray-600"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu (Hidden by default) -->
+        <div class="mobile-menu bg-white py-2 px-4 shadow-lg">
+            <ul class="space-y-2">
+                <li><a href="#about" class="block py-2 text-gray-600 hover:text-blue-500">About</a></li>
+                <li><a href="#skills" class="block py-2 text-gray-600 hover:text-blue-500">Skills</a></li>
+                <li><a href="#projects" class="block py-2 text-gray-600 hover:text-blue-500">Projects</a></li>
+                <li><a href="#contact" class="block py-2 text-gray-600 hover:text-blue-500">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="section bg-blue-500 text-white text-center">
+        <div class="container mx-auto">
+            <h1 class="text-4xl font-bold mb-4">Hi, I'm Your Name</h1>
+            <p class="text-xl mb-6">Web Developer & Designer</p>
+            <a href="#contact" class="bg-white text-blue-500 px-6 py-2 rounded shadow hover:bg-gray-100">Contact Me</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section bg-white">
+        <div class="container mx-auto">
+            <h2 class="text-2xl font-bold section-heading">About Me</h2>
+            <div class="md:flex items-center">
+                <div class="md:w-1/3 mb-6 md:mb-0">
+                    <!-- Profile Image Placeholder -->
+                    <div class="bg-gray-300 h-64 w-64 rounded-full mx-auto flex items-center justify-center">
+                        <i class="fas fa-user text-gray-400 text-5xl"></i>
+                    </div>
+                </div>
+                <div class="md:w-2/3 md:pl-8">
+                    <p class="mb-4">
+                        Hello! I'm a passionate web developer with a focus on creating clean, functional, and user-friendly websites.
+                        I enjoy turning complex problems into simple, beautiful, and intuitive designs.
+                    </p>
+                    <p class="mb-4">
+                        When I'm not coding, you can find me exploring new technologies, reading, or enjoying the outdoors.
+                        I believe in continuous learning and improving my skills every day.
+                    </p>
+                    <div class="flex space-x-4 mt-6">
+                        <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fab fa-linkedin text-2xl"></i></a>
+                        <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fab fa-github text-2xl"></i></a>
+                        <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fab fa-twitter text-2xl"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section bg-gray-50">
+        <div class="container mx-auto">
+            <h2 class="text-2xl font-bold section-heading">My Skills</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Left Column Skills -->
+                <div>
+                    <div class="mb-4">
+                        <div class="flex justify-between mb-1">
+                            <span class="font-medium">HTML</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <div class="flex justify-between mb-1">
+                            <span class="font-medium">CSS</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <div class="flex justify-between mb-1">
+                            <span class="font-medium">JavaScript</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 80%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Column Skills -->
+                <div>
+                    <div class="mb-4">
+                        <div class="flex justify-between mb-1">
+                            <span class="font-medium">React</span>
+                            <span>75%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 75%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <div class="flex justify-between mb-1">
+                            <span class="font-medium">UI/UX Design</span>
+                            <span>70%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 70%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <div class="flex justify-between mb-1">
+                            <span class="font-medium">Node.js</span>
+                            <span>65%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 65%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section bg-white">
+        <div class="container mx-auto">
+            <h2 class="text-2xl font-bold section-heading">My Projects</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Project Card 1 -->
+                <div class="project-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <!-- Project Image Placeholder -->
+                    <div class="bg-gray-300 h-48 flex items-center justify-center">
+                        <i class="fas fa-laptop-code text-gray-400 text-4xl"></i>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold mb-2">Project Name 1</h3>
+                        <p class="text-gray-600 mb-4">A brief description of the project and your role in it. Explain the technologies used.</p>
+                        <div class="flex space-x-2">
+                            <span class="bg-blue-100 text-blue-500 text-xs px-2 py-1 rounded">HTML</span>
+                            <span class="bg-blue-100 text-blue-500 text-xs px-2 py-1 rounded">CSS</span>
+                            <span class="bg-blue-100 text-blue-500 text-xs px-2 py-1 rounded">JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project Card 2 -->
+                <div class="project-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <!-- Project Image Placeholder -->
+                    <div class="bg-gray-300 h-48 flex items-center justify-center">
+                        <i class="fas fa-mobile-alt text-gray-400 text-4xl"></i>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold mb-2">Project Name 2</h3>
+                        <p class="text-gray-600 mb-4">A brief description of the project and your role in it. Explain the technologies used.</p>
+                        <div class="flex space-x-2">
+                            <span class="bg-blue-100 text-blue-500 text-xs px-2 py-1 rounded">React</span>
+                            <span class="bg-blue-100 text-blue-500 text-xs px-2 py-1 rounded">Tailwind</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project Card 3 -->
+                <div class="project-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <!-- Project Image Placeholder -->
+                    <div class="bg-gray-300 h-48 flex items-center justify-center">
+                        <i class="fas fa-database text-gray-400 text-4xl"></i>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold mb-2">Project Name 3</h3>
+                        <p class="text-gray-600 mb-4">A brief description of the project and your role in it. Explain the technologies used.</p>
+                        <div class="flex space-x-2">
+                            <span class="bg-blue-100 text-blue-500 text-xs px-2 py-1 rounded">Node.js</span>
+                            <span class="bg-blue-100 text-blue-500 text-xs px-2 py-1 rounded">MongoDB</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section bg-gray-50">
+        <div class="container mx-auto">
+            <h2 class="text-2xl font-bold section-heading">Contact Me</h2>
+            <div class="md:flex">
+                <!-- Contact Information -->
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <h3 class="text-xl font-semibold mb-4">Get In Touch</h3>
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-envelope text-blue-500 mr-4 text-xl w-5"></i>
+                        <span>youremail@example.com</span>
+                    </div>
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-phone text-blue-500 mr-4 text-xl w-5"></i>
+                        <span>+1 234 567 890</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-map-marker-alt text-blue-500 mr-4 text-xl w-5"></i>
+                        <span>Your City, Your Country</span>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="md:w-1/2">
+                    <form class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="mb-4">
+                            <label for="name" class="block text-gray-700 mb-2">Name</label>
+                            <input type="text" id="name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your Name">
+                        </div>
+                        <div class="mb-4">
+                            <label for="email" class="block text-gray-700 mb-2">Email</label>
+                            <input type="email" id="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your Email">
+                        </div>
+                        <div class="mb-4">
+                            <label for="message" class="block text-gray-700 mb-2">Message</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your Message"></textarea>
+                        </div>
+                        <button type="submit" class="bg-blue-500 text-white py-2 px-6 rounded-lg hover:bg-blue-600 transition duration-300">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto px-4 text-center">
+            <p>© 2023 Your Name. All rights reserved.</p>
+            <div class="flex justify-center space-x-4 mt-4">
+                <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-github"></i></a>
+                <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Mobile Menu Toggle -->
+    <script>
+        // Wait for the DOM to fully load before adding event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get references to the mobile menu button and menu
+            const mobileMenuButton = document.querySelector('.mobile-menu-button');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            
+            // Toggle mobile menu when the button is clicked
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('show');
+            });
+            
+            // Close mobile menu when a menu item is clicked
+            const mobileMenuItems = document.querySelectorAll('.mobile-menu a');
+            mobileMenuItems.forEach(function(item) {
+                item.addEventListener('click', function() {
+                    mobileMenu.classList.remove('show');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
