@@ -1,368 +1,764 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
-    <!-- Import Tailwind CSS from jsdelivr CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <!-- Import Font Awesome for icons -->
-    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Ahmad Alief Maulana Putra | Hardware & Systems Engineering</title>
+    <meta name="description" content="Ahmad Alief Maulana Putra - Engineering Student, Hardware Developer & Embedded Systems Enthusiast. Universitas Andalas.">
+
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        base: {
+                            950: '#060709',
+                            900: '#0C0E12',
+                            850: '#11141A',
+                            800: '#181C24',
+                            700: '#232936',
+                            border: '#1F242F',
+                            line: '#2A313F'
+                        },
+                        tech: {
+                            cyan: '#00F0FF',
+                            sky: '#38BDF8',
+                            emerald: '#10B981',
+                            amber: '#F59E0B'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        /* Custom CSS - Minimal styling to complement Tailwind */
+        /* Strict Sharp Rules - No Rounded Corners */
+        * {
+            border-radius: 0px !important;
+        }
+
         body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
+            background-color: #060709;
+            color: #D1D5DB;
+            font-family: 'Inter', sans-serif;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
         }
 
-        /* Smooth scrolling for the entire page */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Container for all sections */
-        .section {
-            padding: 3rem 1.5rem;
-        }
-
-        /* Custom styling for section headings */
-        .section-heading {
+        .sharp-card {
+            background-color: #0C0E12;
+            border: 1px solid #1F242F;
+            transition: all 0.2s ease-in-out;
             position: relative;
-            padding-bottom: 10px;
-            margin-bottom: 30px;
         }
 
-        .section-heading:after {
-            content: '';
+        .sharp-card:hover {
+            border-color: #38BDF8;
+            background-color: #10131A;
+        }
+
+        .sharp-card::before {
+            content: '+';
             position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background-color: #3B82F6; /* Tailwind blue-500 */
+            top: -7px;
+            left: -6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: #4B5563;
+            line-height: 1;
         }
 
-        /* Styling for the skills progress bars */
-        .skill-bar {
-            height: 10px;
-            background: #e9ecef;
-            border-radius: 5px;
-            margin-bottom: 20px;
+        .corner-marker {
+            position: relative;
+        }
+        .corner-marker::after {
+            content: '+';
+            position: absolute;
+            bottom: -7px;
+            right: -6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: #4B5563;
+            line-height: 1;
         }
 
-        .skill-progress {
-            height: 100%;
-            border-radius: 5px;
-            background-color: #3B82F6; /* Tailwind blue-500 */
+        .badge-sharp {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 3px 8px;
+            border: 1px solid #232936;
+            background: #0C0E12;
+            color: #94A3B8;
+            display: inline-block;
         }
 
-        /* Custom styling for project cards */
-        .project-card {
-            transition: transform 0.3s ease;
+        .badge-sharp-active {
+            border-color: #00F0FF;
+            color: #00F0FF;
+            background: rgba(0, 240, 255, 0.04);
         }
 
-        .project-card:hover {
-            transform: translateY(-5px);
+        .tech-link {
+            transition: color 0.15s, border-color 0.15s;
         }
-
-        /* Mobile menu styles */
-        .mobile-menu {
-            display: none;
-        }
-
-        @media (max-width: 768px) {
-            .desktop-menu {
-                display: none;
-            }
-            .mobile-menu-button {
-                display: block;
-            }
-            .mobile-menu.show {
-                display: block;
-            }
+        .tech-link:hover {
+            color: #00F0FF;
+            border-color: #00F0FF;
         }
     </style>
 </head>
-<body class="bg-gray-50">
-    <!-- Header Section with Navigation -->
-    <header class="bg-white shadow-sm sticky top-0 z-10">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <!-- Logo/Name -->
-            <a href="#" class="text-xl font-bold text-blue-500">Alief</a>
+<body class="selection:bg-cyan-500 selection:text-black antialiased">
+
+    <!-- Minimal Top Bar -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-[#060709]/90 backdrop-blur-md border-b border-base-border">
+        <div class="max-w-6xl mx-auto px-4 sm:px-8 h-14 flex items-center justify-between">
+            <a href="#" class="font-mono text-xs sm:text-sm font-bold tracking-widest text-white uppercase flex items-center gap-2">
+                <span class="w-1.5 h-1.5 bg-tech-cyan inline-block"></span>
+                <span>A.A.M.PUTRA <span class="text-slate-500">//</span> ENG</span>
+            </a>
             
-            <!-- Desktop Navigation Menu -->
-            <nav class="desktop-menu">
-                <ul class="flex space-x-6">
-                    <li><a href="#about" class="text-gray-600 hover:text-blue-500">About</a></li>
-                    <li><a href="#skills" class="text-gray-600 hover:text-blue-500">Skills</a></li>
-                    <li><a href="#projects" class="text-gray-600 hover:text-blue-500">Projects</a></li>
-                    <li><a href="#contact" class="text-gray-600 hover:text-blue-500">Contact</a></li>
-                </ul>
+            <nav class="hidden md:flex items-center space-x-7 text-xs font-mono uppercase tracking-wider text-slate-400">
+                <a href="#about" class="tech-link">01.About</a>
+                <a href="#skills" class="tech-link">02.Domains</a>
+                <a href="#approach" class="tech-link">03.Approach</a>
+                <a href="#projects" class="tech-link">04.Exploration</a>
+                <a href="#career" class="tech-link">05.Career</a>
+                <a href="#contact" class="px-3 py-1.5 border border-tech-cyan text-tech-cyan hover:bg-tech-cyan hover:text-black transition-colors font-semibold">
+                    [ GET IN TOUCH ]
+                </a>
             </nav>
 
-            <!-- Mobile Menu Button -->
-            <button class="mobile-menu-button md:hidden">
-                <i class="fas fa-bars text-gray-600"></i>
-            </button>
-        </div>
-
-        <!-- Mobile Navigation Menu (Hidden by default) -->
-        <div class="mobile-menu bg-white py-2 px-4 shadow-lg">
-            <ul class="space-y-2">
-                <li><a href="#about" class="block py-2 text-gray-600 hover:text-blue-500">About</a></li>
-                <li><a href="#skills" class="block py-2 text-gray-600 hover:text-blue-500">Skills</a></li>
-                <li><a href="#projects" class="block py-2 text-gray-600 hover:text-blue-500">Projects</a></li>
-                <li><a href="#contact" class="block py-2 text-gray-600 hover:text-blue-500">Contact</a></li>
-            </ul>
+            <div class="md:hidden">
+                <a href="#contact" class="px-3 py-1 text-xs font-mono border border-tech-cyan text-tech-cyan">
+                    CONTACT
+                </a>
+            </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="section bg-blue-500 text-white text-center">
-        <div class="container mx-auto">
-            <h1 class="text-4xl font-bold mb-4">Hi, I'm Ahmad Alief Maulana Putra</h1>
-            <p class="text-xl mb-6">Web Developer & Designer</p>
-            <a href="#contact" class="bg-white text-blue-500 px-6 py-2 rounded shadow hover:bg-gray-100">Contact Me</a>
-        </div>
-    </section>
+    <main class="max-w-6xl mx-auto px-4 sm:px-8 pt-24 pb-20 space-y-24">
 
-    <!-- About Section -->
-    <section id="about" class="section bg-white">
-        <div class="container mx-auto">
-            <h2 class="text-2xl font-bold section-heading">About Me</h2>
-            <div class="md:flex items-center">
-                <div class="md:w-1/3 mb-6 md:mb-0">
-                    <!-- Profile Image Placeholder -->
-                    <div class="bg-gray-300 h-64 w-64 rounded-full mx-auto flex items-center justify-center">
-                        <img src="Me.JPG" alt="My Profile Picture" class="object-cover h-full w-full rounded-full">
-                    </div>
-                </div>
-                <div class="md:w-2/3 md:pl-8">
-                    <p class="mb-4">
-                        Hello! I'm a passionate hardware and software developer with a focus on creating clean, functional, and user-friendly tools.
-                        I enjoy turning complex problems into simple, beautiful, and intuitive designs.
-                    </p>
-                    <p class="mb-4">
-                        When I'm not coding, you can find me exploring new technologies, reading, or enjoying the outdoors using my drone.
-                        I believe in continuous learning and improving my skills every day.
-                    </p>
-                    <div class="flex space-x-4 mt-6">
-                        <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fab fa-linkedin text-2xl"></i></a>
-                        <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fab fa-github text-2xl"></i></a>
-                        <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fab fa-twitter text-2xl"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="section bg-gray-50">
-        <div class="container mx-auto">
-            <h2 class="text-2xl font-bold section-heading">My Skills</h2>
-            <div class="grid md:grid-cols-2 gap-6">
-                <!-- Left Column Skills -->
-                <div>
-                    <div class="mb-4">
-                        <div class="flex justify-between mb-1">
-                            <span class="font-medium">HTML</span>
-                            <span>80%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 80%"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="mb-4">
-                        <div class="flex justify-between mb-1">
-                            <span class="font-medium">CSS</span>
-                            <span>75%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 75%"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="mb-4">
-                        <div class="flex justify-between mb-1">
-                            <span class="font-medium">JavaScript</span>
-                            <span>75%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 75%"></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Right Column Skills -->
-                <div>
-                    <div class="mb-4">
-                        <div class="flex justify-between mb-1">
-                            <span class="font-medium">PCB Design</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 85%"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="mb-4">
-                        <div class="flex justify-between mb-1">
-                            <span class="font-medium">Firmware (C/C++)</span>
-                            <span>80%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 75%"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="mb-4">
-                        <div class="flex justify-between mb-1">
-                            <span class="font-medium">CAD / 3D Modeling</span>
-                            <span>80%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 80%"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="section bg-white">
-        <div class="container mx-auto">
-            <h2 class="text-2xl font-bold section-heading">My Projects</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Project Card 1 -->
-                <div class="project-card bg-white rounded-lg shadow-md overflow-hidden">
-                    <!-- Project Image Placeholder -->
-                    <div class="bg-gray-300 h-48 flex items-center justify-center">
-                        <i class="fas fa-laptop-code text-gray-400 text-4xl"></i>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold mb-2">Drone Design</h3>
-                        <p class="text-gray-600 mb-4">A Drone Frame desgin for Lifting heavyloads specialized for Cameras (CineLifters)</p>
-                        <div class="flex space-x-2">
-                            <span class="bg-blue-100 text-blue-500 text-xs px-2 py-1 rounded">Solidworks</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Project Card 2 -->
-                <div class="project-card bg-white rounded-lg shadow-md overflow-hidden">
-                    <!-- Project Image Placeholder -->
-                    <div class="bg-gray-300 h-48 flex items-center justify-center">
-                        <i class="fas fa-mobile-alt text-gray-400 text-4xl"></i>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold mb-2">Project Name 2</h3>
-                        <p class="text-gray-600 mb-4">A brief description of the project and your role in it. Explain the technologies used.</p>
-                        <div class="flex space-x-2">
-                            <span class="bg-blue-100 text-blue-500 text-xs px-2 py-1 rounded">React</span>
-                            <span class="bg-blue-100 text-blue-500 text-xs px-2 py-1 rounded">Tailwind</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Project Card 3 -->
-                <div class="project-card bg-white rounded-lg shadow-md overflow-hidden">
-                    <!-- Project Image Placeholder -->
-                    <div class="bg-gray-300 h-48 flex items-center justify-center">
-                        <i class="fas fa-database text-gray-400 text-4xl"></i>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold mb-2">Project Name 3</h3>
-                        <p class="text-gray-600 mb-4">A brief description of the project and your role in it. Explain the technologies used.</p>
-                        <div class="flex space-x-2">
-                            <span class="bg-blue-100 text-blue-500 text-xs px-2 py-1 rounded">Node.js</span>
-                            <span class="bg-blue-100 text-blue-500 text-xs px-2 py-1 rounded">MongoDB</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="section bg-gray-50">
-        <div class="container mx-auto">
-            <h2 class="text-2xl font-bold section-heading">Contact Me</h2>
-            <div class="md:flex">
-                <!-- Contact Information -->
-                <div class="md:w-1/2 mb-8 md:mb-0">
-                    <h3 class="text-xl font-semibold mb-4">Get In Touch</h3>
-                    <div class="flex items-center mb-4">
-                        <i class="fas fa-envelope text-blue-500 mr-4 text-xl w-5"></i>
-                        <span>ahmadaliefmaulanaputra@gmail.com</span>
-                    </div>
-                    <div class="flex items-center mb-4">
-                        <i class="fas fa-phone text-blue-500 mr-4 text-xl w-5"></i>
-                        <span>+62857 8953 9506</span>
-                    </div>
-                    <div class="flex items-center">
-                        <i class="fas fa-map-marker-alt text-blue-500 mr-4 text-xl w-5"></i>
-                        <span>Bukittinggi, Indonesia</span>
-                    </div>
-                </div>
-                
-                <!-- Contact Form -->
-                <div class="md:w-1/2">
-                    <form class="bg-white p-6 rounded-lg shadow-md">
-                        <div class="mb-4">
-                            <label for="name" class="block text-gray-700 mb-2">Name</label>
-                            <input type="text" id="name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your Name">
-                        </div>
-                        <div class="mb-4">
-                            <label for="email" class="block text-gray-700 mb-2">Email</label>
-                            <input type="email" id="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your Email">
-                        </div>
-                        <div class="mb-4">
-                            <label for="message" class="block text-gray-700 mb-2">Message</label>
-                            <textarea id="message" rows="4" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your Message"></textarea>
-                        </div>
-                        <button type="submit" class="bg-blue-500 text-white py-2 px-6 rounded-lg hover:bg-blue-600 transition duration-300">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-6">
-        <div class="container mx-auto px-4 text-center">
-            <p>© 2025 Alief. All rights reserved.</p>
-            <div class="flex justify-center space-x-4 mt-4">
-                <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-linkedin"></i></a>
-                <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-github"></i></a>
-                <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-twitter"></i></a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- JavaScript for Mobile Menu Toggle -->
-    <script>
-        // Wait for the DOM to fully load before adding event listeners
-        document.addEventListener('DOMContentLoaded', function() {
-            // Get references to the mobile menu button and menu
-            const mobileMenuButton = document.querySelector('.mobile-menu-button');
-            const mobileMenu = document.querySelector('.mobile-menu');
+        <!-- HERO SECTION -->
+        <section id="hero" class="pt-6 sm:pt-12 space-y-8 border-b border-base-border pb-16">
             
-            // Toggle mobile menu when the button is clicked
-            mobileMenuButton.addEventListener('click', function() {
-                mobileMenu.classList.toggle('show');
-            });
+            <div class="flex flex-wrap items-center gap-3 text-xs font-mono">
+                <span class="badge-sharp badge-sharp-active flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 bg-tech-cyan animate-ping"></span>
+                    SYSTEM ACTIVE
+                </span>
+                <span class="badge-sharp">BUKITTINGGI, SUMATERA BARAT</span>
+                <span class="badge-sharp text-slate-300">UNIVERSITAS ANDALAS</span>
+            </div>
+
+            <div class="space-y-4">
+                <p class="font-mono text-xs text-tech-cyan uppercase tracking-widest">
+                    // CURRICULUM VITAE & TECHNICAL INTRO
+                </p>
+                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white uppercase font-sans leading-none">
+                    Ahmad Alief <br class="hidden sm:inline">
+                    <span class="text-slate-400">Maulana Putra</span>
+                </h1>
+                <div class="pt-1">
+                    <p class="font-mono text-xs sm:text-sm text-tech-cyan tracking-wider uppercase font-semibold">
+                        Engineering Student <span class="text-slate-600">/</span> Hardware Developer <span class="text-slate-600">/</span> Embedded Systems Enthusiast
+                    </p>
+                </div>
+            </div>
+
+            <!-- Core Statement Sharp Box -->
+            <div class="border-l-2 border-tech-cyan bg-base-900 border border-y-base-border border-r-base-border p-6 max-w-4xl">
+                <p class="text-base sm:text-xl font-medium text-white tracking-wide font-sans leading-relaxed">
+                    "Bridging engineering fundamentals, electronics, and real-world hardware development."
+                </p>
+            </div>
+
+            <!-- Lead Overview Paragraphs -->
+            <div class="max-w-3xl space-y-4 text-slate-300 text-sm sm:text-base leading-relaxed">
+                <p>
+                    I am an engineering student at <strong class="text-white">Universitas Andalas</strong> with a strong interest in designing, understanding, and building technical systems. My interests extend beyond conventional engineering coursework into embedded electronics, PCB development, computer hardware, CAD modeling, unmanned aerial vehicles, and electromechanical systems.
+                </p>
+                <p class="text-slate-400">
+                    I enjoy exploring how things work at a fundamental level, identifying their limitations, and developing practical solutions through research, design, experimentation, and iterative improvement.
+                </p>
+                <p class="text-slate-400">
+                    My approach to engineering is driven by curiosity, independent learning, and a desire to understand the entire system rather than just individual components. Whether studying structural behavior, designing an electronic circuit, troubleshooting hardware, or developing a custom UAV platform, I aim to combine sound engineering principles with practical implementation.
+                </p>
+            </div>
+
+            <!-- Sharp Action Bar -->
+            <div class="flex flex-wrap gap-3 pt-4 font-mono text-xs">
+                <a href="#contact" class="px-5 py-2.5 bg-white text-black font-bold uppercase tracking-wider hover:bg-tech-cyan transition-colors">
+                    Contact & Direct Info &rarr;
+                </a>
+                <a href="https://github.com/ItsMeAlief" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 border border-slate-600 text-white uppercase tracking-wider hover:border-tech-cyan hover:text-tech-cyan transition-colors bg-base-900 flex items-center gap-2">
+                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    <span>GitHub: ItsMeAlief</span>
+                </a>
+                <a href="mailto:aaliefmp@gmail.com" class="px-5 py-2.5 border border-base-border text-slate-300 uppercase tracking-wider hover:border-slate-500 hover:text-white transition-colors bg-base-900 flex items-center gap-2">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    <span>aaliefmp@gmail.com</span>
+                </a>
+                <a href="https://wa.me/6285789539506" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 border border-emerald-500/50 text-emerald-400 uppercase tracking-wider hover:bg-emerald-500/10 transition-colors bg-base-900 flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 bg-emerald-400 inline-block"></span>
+                    <span>WA: +62 857-8953-9506</span>
+                </a>
+            </div>
+
+        </section>
+
+        <!-- 01 // ABOUT ME -->
+        <section id="about" class="space-y-6 pt-4">
+            <div class="flex items-baseline justify-between border-b border-base-border pb-3">
+                <div class="flex items-center gap-3">
+                    <span class="font-mono text-xs text-tech-cyan font-bold">// 01</span>
+                    <h2 class="text-xl sm:text-2xl font-bold text-white uppercase tracking-wider">About Me</h2>
+                </div>
+                <span class="font-mono text-xs text-slate-500 hidden sm:inline">[ INTERDISCIPLINARY PROFILE ]</span>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <div class="lg:col-span-8 sharp-card p-6 sm:p-8 space-y-4 corner-marker">
+                    <p class="text-slate-300 leading-relaxed text-sm sm:text-base">
+                        I am building an <strong class="text-tech-cyan">interdisciplinary engineering skill set</strong> that combines analytical thinking with hands-on technical exploration. My academic background in civil engineering provides a foundation in mechanics, structural behavior, materials, and engineering analysis, while my independent technical interests have led me toward electronics, embedded programming, hardware integration, and mechanical design.
+                    </p>
+                    <p class="text-slate-400 leading-relaxed text-sm">
+                        I am particularly interested in projects where <strong class="text-white">hardware and software intersect</strong>. I enjoy understanding the relationship between electronic components, firmware, communication interfaces, mechanical structures, power systems, and the overall behavior of a product.
+                    </p>
+                    <p class="text-slate-400 leading-relaxed text-sm">
+                        Rather than limiting myself to a single discipline, I continuously explore how knowledge from different engineering fields can be applied to solve practical problems.
+                    </p>
+                    
+                    <div class="mt-6 pt-4 border-t border-base-border font-mono text-xs text-slate-400 space-y-1">
+                        <div class="text-tech-cyan font-semibold uppercase tracking-wider">Target Objective</div>
+                        <p class="text-slate-300">
+                            To contribute to engineering projects involving product development, hardware research, embedded systems, automation, and technical innovation.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-4 sharp-card p-6 space-y-6 corner-marker">
+                    <div class="border-b border-base-border pb-3">
+                        <div class="font-mono text-xs text-slate-400 uppercase tracking-widest font-semibold">Profile Metadata</div>
+                    </div>
+
+                    <div class="space-y-4 font-mono text-xs">
+                        <div>
+                            <span class="text-slate-500 block">INSTITUTION</span>
+                            <span class="text-white font-medium">Universitas Andalas</span>
+                        </div>
+                        <div>
+                            <span class="text-slate-500 block">BASE DISCIPLINE</span>
+                            <span class="text-white font-medium">Civil & Structural Engineering</span>
+                        </div>
+                        <div>
+                            <span class="text-slate-500 block">SPECIALIZATION DRIVE</span>
+                            <span class="text-tech-cyan font-medium">Hardware, Embedded & Robotics</span>
+                        </div>
+                        <div>
+                            <span class="text-slate-500 block">BASE LOCATION</span>
+                            <span class="text-white font-medium">Kota Bukittinggi, Sumatera Barat (26117)</span>
+                        </div>
+                        <div>
+                            <span class="text-slate-500 block">GITHUB</span>
+                            <a href="https://github.com/ItsMeAlief" target="_blank" rel="noopener noreferrer" class="text-white hover:text-tech-cyan font-medium">github.com/ItsMeAlief</a>
+                        </div>
+                        <div>
+                            <span class="text-slate-500 block">PRIMARY EMAIL</span>
+                            <a href="mailto:aaliefmp@gmail.com" class="text-tech-cyan hover:underline font-medium">aaliefmp@gmail.com</a>
+                        </div>
+                        <div>
+                            <span class="text-slate-500 block">SECONDARY EMAIL</span>
+                            <a href="mailto:ahmadaliefmaulanaputra@gmail.com" class="text-slate-300 hover:text-white font-medium text-[11px] truncate block">ahmadaliefmaulanaputra@gmail.com</a>
+                        </div>
+                        <div>
+                            <span class="text-slate-500 block">INSTAGRAM</span>
+                            <a href="https://instagram.com/a.alief_" target="_blank" rel="noopener noreferrer" class="text-tech-cyan hover:underline font-medium">@a.alief_</a>
+                        </div>
+                        <div>
+                            <span class="text-slate-500 block">DIRECT PHONE / WA</span>
+                            <a href="https://wa.me/6285789539506" target="_blank" rel="noopener noreferrer" class="text-white hover:text-emerald-400 font-medium">+62 857-8953-9506</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 02 // TECHNICAL SKILLS & DOMAINS -->
+        <section id="skills" class="space-y-6 pt-4">
+            <div class="flex items-baseline justify-between border-b border-base-border pb-3">
+                <div class="flex items-center gap-3">
+                    <span class="font-mono text-xs text-tech-cyan font-bold">// 02</span>
+                    <h2 class="text-xl sm:text-2xl font-bold text-white uppercase tracking-wider">Technical Skills & Areas of Interest</h2>
+                </div>
+                <span class="font-mono text-xs text-slate-500 hidden sm:inline">[ DOMAIN TAXONOMY ]</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+                <!-- 01: Electronics & PCB -->
+                <div class="sharp-card p-6 space-y-4 corner-marker">
+                    <div class="flex justify-between items-start font-mono text-xs">
+                        <span class="text-tech-cyan font-bold">SEC_01</span>
+                        <span class="badge-sharp">HARDWARE</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white uppercase tracking-tight">Electronics & PCB Development</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Electronic circuit design, PCB layout, component selection, power regulation, signal interfacing, and hardware integration. Custom controller boards, sensor interfaces, and power distribution.
+                    </p>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Meticulous datasheet examination, electrical specification audits, and optimizing for manufacturability and electrical reliability.
+                    </p>
+                    <div class="pt-3 border-t border-base-border flex flex-wrap gap-1.5 font-mono text-[11px]">
+                        <span class="badge-sharp">PCB Layout</span>
+                        <span class="badge-sharp">Power Reg</span>
+                        <span class="badge-sharp">Signals</span>
+                        <span class="badge-sharp">Datasheets</span>
+                    </div>
+                </div>
+
+                <!-- 02: Embedded Systems -->
+                <div class="sharp-card p-6 space-y-4 corner-marker">
+                    <div class="flex justify-between items-start font-mono text-xs">
+                        <span class="text-tech-cyan font-bold">SEC_02</span>
+                        <span class="badge-sharp">FIRMWARE</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white uppercase tracking-tight">Embedded & Microcontrollers</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Microcontroller-based development in Embedded C and Python, integrating silicon with firmware logic. Hands-on exploration of <strong class="text-white">STM32</strong> and <strong class="text-white">ESP32</strong> architectures.
+                    </p>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Implementation of robust communication protocols: UART, CAN, RS-485, USB, and multi-sensor bus architectures.
+                    </p>
+                    <div class="pt-3 border-t border-base-border flex flex-wrap gap-1.5 font-mono text-[11px]">
+                        <span class="badge-sharp">STM32</span>
+                        <span class="badge-sharp">ESP32</span>
+                        <span class="badge-sharp">Embedded C</span>
+                        <span class="badge-sharp">CAN / RS-485</span>
+                    </div>
+                </div>
+
+                <!-- 03: UAV & FPV -->
+                <div class="sharp-card p-6 space-y-4 corner-marker">
+                    <div class="flex justify-between items-start font-mono text-xs">
+                        <span class="text-tech-cyan font-bold">SEC_03</span>
+                        <span class="badge-sharp">AERONAUTICS</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white uppercase tracking-tight">UAV & FPV Drone Engineering</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Multirotor design, custom UAV development, flight controllers, ESC tuning, motor/propeller thrust dynamics, battery load systems, and high-frequency RF transmission.
+                    </p>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        High-current power distribution, GPS integration, fail-safe mechanics, and physical structural vibration reduction.
+                    </p>
+                    <div class="pt-3 border-t border-base-border flex flex-wrap gap-1.5 font-mono text-[11px]">
+                        <span class="badge-sharp">Flight Ctrl</span>
+                        <span class="badge-sharp">ESC Tuning</span>
+                        <span class="badge-sharp">RF Telemetry</span>
+                        <span class="badge-sharp">Power Dist</span>
+                    </div>
+                </div>
+
+                <!-- 04: Mechanical Design & CAD -->
+                <div class="sharp-card p-6 space-y-4 corner-marker">
+                    <div class="flex justify-between items-start font-mono text-xs">
+                        <span class="text-tech-cyan font-bold">SEC_04</span>
+                        <span class="badge-sharp">MECHANICAL</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white uppercase tracking-tight">CAD, 3D Design & Prototyping</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Parametric 3D CAD modeling, custom hardware enclosures, mechanical assemblies, and rapid prototyping via additive manufacturing (3D printing).
+                    </p>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Emphasis on Design for Manufacturing (DFM), thermal tolerances, ease of assembly, and structural modularity.
+                    </p>
+                    <div class="pt-3 border-t border-base-border flex flex-wrap gap-1.5 font-mono text-[11px]">
+                        <span class="badge-sharp">3D CAD</span>
+                        <span class="badge-sharp">3D Printing</span>
+                        <span class="badge-sharp">Enclosures</span>
+                        <span class="badge-sharp">DFM</span>
+                    </div>
+                </div>
+
+                <!-- 05: Hardware Troubleshooting -->
+                <div class="sharp-card p-6 space-y-4 corner-marker">
+                    <div class="flex justify-between items-start font-mono text-xs">
+                        <span class="text-tech-cyan font-bold">SEC_05</span>
+                        <span class="badge-sharp">DIAGNOSTICS</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white uppercase tracking-tight">Computer Hardware & Troubleshooting</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Computer architecture, component bus behavior, GPU/memory dynamics, power curves, thermal mitigation, and driver-level diagnostics.
+                    </p>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Systematic root-cause problem isolation over temporary patches, validating hypotheses with telemetry and hardware testing.
+                    </p>
+                    <div class="pt-3 border-t border-base-border flex flex-wrap gap-1.5 font-mono text-[11px]">
+                        <span class="badge-sharp">Root-Cause</span>
+                        <span class="badge-sharp">Thermals</span>
+                        <span class="badge-sharp">Architecture</span>
+                        <span class="badge-sharp">Telemetry</span>
+                    </div>
+                </div>
+
+                <!-- 06: Civil & Structural -->
+                <div class="sharp-card p-6 space-y-4 corner-marker">
+                    <div class="flex justify-between items-start font-mono text-xs">
+                        <span class="text-tech-cyan font-bold">SEC_06</span>
+                        <span class="badge-sharp">CORE ACADEMIC</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white uppercase tracking-tight">Civil & Structural Engineering</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Formal background in structural analysis, mechanics of materials, reinforced concrete, steel design, geotechnics, hydraulics, and earthquake engineering.
+                    </p>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Applying rigorous mathematical proofs, engineering standards, and analytical software to evaluate how physical systems behave under real-world constraints.
+                    </p>
+                    <div class="pt-3 border-t border-base-border flex flex-wrap gap-1.5 font-mono text-[11px]">
+                        <span class="badge-sharp">Mechanics</span>
+                        <span class="badge-sharp">Load Analysis</span>
+                        <span class="badge-sharp">Standards</span>
+                        <span class="badge-sharp">Concrete/Steel</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 03 // HOW I APPROACH ENGINEERING -->
+        <section id="approach" class="space-y-6 pt-4">
+            <div class="flex items-baseline justify-between border-b border-base-border pb-3">
+                <div class="flex items-center gap-3">
+                    <span class="font-mono text-xs text-tech-cyan font-bold">// 03</span>
+                    <h2 class="text-xl sm:text-2xl font-bold text-white uppercase tracking-wider">How I Approach Engineering</h2>
+                </div>
+                <span class="font-mono text-xs text-slate-500 hidden sm:inline">[ METHODOLOGY ]</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-3">
+                
+                <div class="sharp-card p-5 space-y-2 border-t-2 border-t-tech-cyan">
+                    <div class="font-mono text-xs text-tech-cyan font-bold">[ 01 ]</div>
+                    <h3 class="font-bold text-white text-sm uppercase">System-Level Thinking</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        I look beyond isolated components to comprehend how hardware, software, mechanics, and power grids interact seamlessly as a unified system.
+                    </p>
+                </div>
+
+                <div class="sharp-card p-5 space-y-2 border-t-2 border-t-tech-cyan">
+                    <div class="font-mono text-xs text-tech-cyan font-bold">[ 02 ]</div>
+                    <h3 class="font-bold text-white text-sm uppercase">Independent Learning</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        I actively digest technical documentation, datasheets, ISO/IEEE standards, and open-source hardware repositories to continuously advance capability.
+                    </p>
+                </div>
+
+                <div class="sharp-card p-5 space-y-2 border-t-2 border-t-tech-cyan">
+                    <div class="font-mono text-xs text-tech-cyan font-bold">[ 03 ]</div>
+                    <h3 class="font-bold text-white text-sm uppercase">Analytical Troubleshooting</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Deconstructing complex faults into verifiable sub-components, hypothesizing failure mechanisms, and validating with evidence-based reasoning.
+                    </p>
+                </div>
+
+                <div class="sharp-card p-5 space-y-2 border-t-2 border-t-tech-cyan">
+                    <div class="font-mono text-xs text-tech-cyan font-bold">[ 04 ]</div>
+                    <h3 class="font-bold text-white text-sm uppercase">Practical Design</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Converting abstract theoretical principles into physical functional units via circuit layouts, CAD models, firmware, and physical prototypes.
+                    </p>
+                </div>
+
+                <div class="sharp-card p-5 space-y-2 border-t-2 border-t-tech-cyan">
+                    <div class="font-mono text-xs text-tech-cyan font-bold">[ 05 ]</div>
+                    <h3 class="font-bold text-white text-sm uppercase">Continuous Iteration</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Treating engineering as a closed feedback loop: hypothesis &rarr; prototype &rarr; measurement &rarr; refinement for maximized durability.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 04 // PROJECTS & TECHNICAL EXPLORATION -->
+        <section id="projects" class="space-y-6 pt-4">
+            <div class="flex items-baseline justify-between border-b border-base-border pb-3">
+                <div class="flex items-center gap-3">
+                    <span class="font-mono text-xs text-tech-cyan font-bold">// 04</span>
+                    <h2 class="text-xl sm:text-2xl font-bold text-white uppercase tracking-wider">Projects & Technical Exploration</h2>
+                </div>
+                <span class="font-mono text-xs text-slate-500 hidden sm:inline">[ REPOSITORY & LOGS ]</span>
+            </div>
+
+            <div class="border border-base-border bg-base-900 p-5 font-mono text-xs text-slate-300 space-y-2">
+                <div class="text-tech-cyan font-bold">// DOCUMENTATION STANDARD</div>
+                <p>
+                    Where applicable, project documentation includes schematics, PCB layout files, CAD assemblies, source code, analytical calculations, testing logs, and physical test bench data.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+                <div class="sharp-card p-5 space-y-3">
+                    <div class="flex justify-between items-center font-mono text-[11px] text-slate-500">
+                        <span>PRJ_CAT_01</span>
+                        <span class="text-tech-cyan">[ HARDWARE ]</span>
+                    </div>
+                    <h3 class="font-bold text-white text-sm uppercase">Custom Embedded PCB Boards</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Custom microcontroller boards, sensor integration modules, and power regulation circuits designed in KiCAD.
+                    </p>
+                    <div class="pt-2 font-mono text-[10px] text-slate-500">
+                        SCHEMATICS · GERBERS · BOM
+                    </div>
+                </div>
+
+                <div class="sharp-card p-5 space-y-3">
+                    <div class="flex justify-between items-center font-mono text-[11px] text-slate-500">
+                        <span>PRJ_CAT_02</span>
+                        <span class="text-tech-cyan">[ CONTROL ]</span>
+                    </div>
+                    <h3 class="font-bold text-white text-sm uppercase">STM32 / ESP32 Controller Units</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Firmware implementations handling sensor acquisition, bus arbitrations (UART, CAN, RS-485), and actuation loops.
+                    </p>
+                    <div class="pt-2 font-mono text-[10px] text-slate-500">
+                        EMBEDDED C · PROTOCOLS · PINMAPS
+                    </div>
+                </div>
+
+                <div class="sharp-card p-5 space-y-3">
+                    <div class="flex justify-between items-center font-mono text-[11px] text-slate-500">
+                        <span>PRJ_CAT_03</span>
+                        <span class="text-tech-cyan">[ AERONAUTICS ]</span>
+                    </div>
+                    <h3 class="font-bold text-white text-sm uppercase">UAV & FPV System Builds</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Custom airframes, electronic speed controller integration, telemetry radio links, and blackbox telemetry log tuning.
+                    </p>
+                    <div class="pt-2 font-mono text-[10px] text-slate-500">
+                        TELEMETRY · PID PROFILES · LOGS
+                    </div>
+                </div>
+
+                <div class="sharp-card p-5 space-y-3">
+                    <div class="flex justify-between items-center font-mono text-[11px] text-slate-500">
+                        <span>PRJ_CAT_04</span>
+                        <span class="text-tech-cyan">[ MECHANICAL ]</span>
+                    </div>
+                    <h3 class="font-bold text-white text-sm uppercase">CAD Enclosures & 3D Assemblies</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Functional enclosures with precise PCB mounting tolerances, thermal venting, and snap-fit or threaded insert assemblies.
+                    </p>
+                    <div class="pt-2 font-mono text-[10px] text-slate-500">
+                        STEP · STL · DRAWINGS
+                    </div>
+                </div>
+
+                <div class="sharp-card p-5 space-y-3">
+                    <div class="flex justify-between items-center font-mono text-[11px] text-slate-500">
+                        <span>PRJ_CAT_05</span>
+                        <span class="text-tech-cyan">[ DIAGNOSTICS ]</span>
+                    </div>
+                    <h3 class="font-bold text-white text-sm uppercase">Hardware Diagnostic Case Studies</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Detailed troubleshooting logs isolating hardware faults, component thermal limits, and power rail voltage drops.
+                    </p>
+                    <div class="pt-2 font-mono text-[10px] text-slate-500">
+                        THERMAL CURVES · METRICS
+                    </div>
+                </div>
+
+                <div class="sharp-card p-5 space-y-3">
+                    <div class="flex justify-between items-center font-mono text-[11px] text-slate-500">
+                        <span>PRJ_CAT_06</span>
+                        <span class="text-tech-cyan">[ STRUCTURAL ]</span>
+                    </div>
+                    <h3 class="font-bold text-white text-sm uppercase">Structural & Stress Computations</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Engineering calculations analyzing bending moments, shear forces, and physical system stress resistance under load.
+                    </p>
+                    <div class="pt-2 font-mono text-[10px] text-slate-500">
+                        CALCULATION SHEETS · PROOFS
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 05 // CAREER INTERESTS & TARGET ROLES -->
+        <section id="career" class="space-y-6 pt-4">
+            <div class="flex items-baseline justify-between border-b border-base-border pb-3">
+                <div class="flex items-center gap-3">
+                    <span class="font-mono text-xs text-tech-cyan font-bold">// 05</span>
+                    <h2 class="text-xl sm:text-2xl font-bold text-white uppercase tracking-wider">Career Interests & Target Roles</h2>
+                </div>
+                <span class="font-mono text-xs text-slate-500 hidden sm:inline">[ EMPLOYMENT FOCUS ]</span>
+            </div>
+
+            <div class="sharp-card p-6 sm:p-8 space-y-6 corner-marker">
+                <div class="space-y-3">
+                    <div class="font-mono text-xs text-slate-400 uppercase tracking-widest font-semibold">Priority Engineering Roles</div>
+                    <div class="flex flex-wrap gap-2 font-mono text-xs">
+                        <span class="px-3 py-1.5 border border-tech-cyan/60 text-tech-cyan bg-base-950 font-medium">Embedded Systems Engineering</span>
+                        <span class="px-3 py-1.5 border border-tech-cyan/60 text-tech-cyan bg-base-950 font-medium">Electronics & PCB Design</span>
+                        <span class="px-3 py-1.5 border border-tech-cyan/60 text-tech-cyan bg-base-950 font-medium">Hardware Research & Development</span>
+                        <span class="px-3 py-1.5 border border-tech-cyan/60 text-tech-cyan bg-base-950 font-medium">UAV & Drone Systems Engineering</span>
+                        <span class="px-3 py-1.5 border border-base-border text-slate-300 bg-base-950">Automation & Control Systems</span>
+                        <span class="px-3 py-1.5 border border-base-border text-slate-300 bg-base-950">Mechanical Design & Prototyping</span>
+                        <span class="px-3 py-1.5 border border-base-border text-slate-300 bg-base-950">Computer Hardware Engineering</span>
+                        <span class="px-3 py-1.5 border border-base-border text-slate-300 bg-base-950">Civil & Structural Engineering</span>
+                    </div>
+                </div>
+
+                <div class="pt-4 border-t border-base-border text-slate-300 text-sm leading-relaxed space-y-3">
+                    <p>
+                        I am particularly interested in <strong>interdisciplinary roles</strong> where I can collaborate with engineers from diverse backgrounds, learn from seasoned technical teams, and actively contribute to bringing physical products and hardware systems to life.
+                    </p>
+                    <p class="text-slate-400">
+                        I welcome opportunities that challenge me to deepen my technical expertise, develop professional engineering rigor, and translate independent exploration into verifiable project outcomes.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- BEYOND THE JOB TITLE -->
+        <section class="border border-base-border bg-base-900 p-8 sm:p-12 space-y-6 text-center relative">
+            <div class="font-mono text-xs text-tech-cyan uppercase tracking-widest">[ ENGINEERING PHILOSOPHY ]</div>
             
-            // Close mobile menu when a menu item is clicked
-            const mobileMenuItems = document.querySelectorAll('.mobile-menu a');
-            mobileMenuItems.forEach(function(item) {
-                item.addEventListener('click', function() {
-                    mobileMenu.classList.remove('show');
-                });
-            });
-        });
-    </script>
+            <blockquote class="text-base sm:text-xl font-medium text-white max-w-3xl mx-auto leading-relaxed">
+                "I believe that an engineering mindset is defined not only by formal qualifications, but also by the ability to ask the right questions, understand constraints, evaluate evidence, and develop solutions that work."
+            </blockquote>
+            
+            <p class="text-xs sm:text-sm text-slate-400 max-w-2xl mx-auto">
+                My interests span several engineering disciplines, but they share a common purpose: understanding complex systems and learning how to design, build, analyze, and improve them.
+            </p>
+
+            <div class="pt-4">
+                <div class="inline-block border border-tech-cyan/40 bg-base-950 px-6 py-3 font-mono text-xs text-tech-cyan">
+                    Curiosity &rarr; Capability &rarr; Prototypes &rarr; Practical Results
+                </div>
+            </div>
+        </section>
+
+        <!-- 06 // DIRECT CONTACT & DETAILS -->
+        <section id="contact" class="space-y-6 pt-4 border-t border-base-border">
+            <div class="flex items-baseline justify-between border-b border-base-border pb-3">
+                <div class="flex items-center gap-3">
+                    <span class="font-mono text-xs text-tech-cyan font-bold">// 06</span>
+                    <h2 class="text-xl sm:text-2xl font-bold text-white uppercase tracking-wider">Contact & Direct Channels</h2>
+                </div>
+                <span class="font-mono text-xs text-slate-500 hidden sm:inline">[ COMMUNICATION BUS ]</span>
+            </div>
+
+            <!-- Contact Grid Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+
+                <!-- WhatsApp / Phone -->
+                <a href="https://wa.me/6285789539506" target="_blank" rel="noopener noreferrer" class="sharp-card p-5 space-y-3 block group">
+                    <div class="flex justify-between items-center font-mono text-xs text-slate-500">
+                        <span>COMM_01</span>
+                        <span class="text-emerald-400 group-hover:underline">[ WA / TEL ]</span>
+                    </div>
+                    <div class="font-bold text-white text-sm">Direct Phone / WA</div>
+                    <div class="font-mono text-xs text-emerald-400 font-semibold">+62 857-8953-9506</div>
+                    <div class="text-[11px] text-slate-400">Direct message & call link</div>
+                </a>
+
+                <!-- Primary Email -->
+                <a href="mailto:aaliefmp@gmail.com" class="sharp-card p-5 space-y-3 block group">
+                    <div class="flex justify-between items-center font-mono text-xs text-slate-500">
+                        <span>COMM_02</span>
+                        <span class="text-tech-cyan group-hover:underline">[ PRIMARY ]</span>
+                    </div>
+                    <div class="font-bold text-white text-sm">Primary Email</div>
+                    <div class="font-mono text-xs text-tech-cyan font-semibold truncate">aaliefmp@gmail.com</div>
+                    <div class="text-[11px] text-slate-400">Direct contact inbox</div>
+                </a>
+
+                <!-- Academic / Formal Email -->
+                <a href="mailto:ahmadaliefmaulanaputra@gmail.com" class="sharp-card p-5 space-y-3 block group">
+                    <div class="flex justify-between items-center font-mono text-xs text-slate-500">
+                        <span>COMM_03</span>
+                        <span class="text-slate-400 group-hover:underline">[ FORMAL ]</span>
+                    </div>
+                    <div class="font-bold text-white text-sm">Formal Email</div>
+                    <div class="font-mono text-[11px] text-slate-300 truncate" title="ahmadaliefmaulanaputra@gmail.com">ahmadaliefmaulanaputra@gmail.com</div>
+                    <div class="text-[11px] text-slate-400">Long-form inquiries</div>
+                </a>
+
+                <!-- Instagram -->
+                <a href="https://instagram.com/a.alief_" target="_blank" rel="noopener noreferrer" class="sharp-card p-5 space-y-3 block group">
+                    <div class="flex justify-between items-center font-mono text-xs text-slate-500">
+                        <span>COMM_04</span>
+                        <span class="text-tech-cyan group-hover:underline">[ SOCIAL ]</span>
+                    </div>
+                    <div class="font-bold text-white text-sm">Instagram Profile</div>
+                    <div class="font-mono text-xs text-tech-cyan font-semibold">@a.alief_</div>
+                    <div class="text-[11px] text-slate-400">Visual engineering logs</div>
+                </a>
+
+                <!-- GitHub -->
+                <a href="https://github.com/ItsMeAlief" target="_blank" rel="noopener noreferrer" class="sharp-card p-5 space-y-3 block group">
+                    <div class="flex justify-between items-center font-mono text-xs text-slate-500">
+                        <span>COMM_05</span>
+                        <span class="text-white group-hover:underline">[ REPO ]</span>
+                    </div>
+                    <div class="font-bold text-white text-sm">GitHub Profile</div>
+                    <div class="font-mono text-xs text-slate-200 font-semibold">ItsMeAlief</div>
+                    <div class="text-[11px] text-slate-400">github.com/ItsMeAlief</div>
+                </a>
+
+            </div>
+
+            <!-- Physical Location / Address Card -->
+            <div class="sharp-card p-5 corner-marker border-l-2 border-l-tech-cyan">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div class="space-y-1">
+                        <div class="font-mono text-xs text-tech-cyan font-bold flex items-center gap-2">
+                            <span>// PHYSICAL ADDRESS / POSTAL</span>
+                            <span class="text-slate-600">|</span>
+                            <span class="text-slate-400">KODE POS 26117</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-white font-medium leading-relaxed">
+                            Jl. N.J.Dt.Mangkuto Ameh No.65, RT.2/RW.2, Koto Selayan, Kec. Mandiangin Koto Selayan, Kota Bukittinggi, Sumatera Barat 26117
+                        </p>
+                    </div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Jl.+N.J.Dt.Mangkuto+Ameh+No.65,+Koto+Selayan,+Bukittinggi" target="_blank" rel="noopener noreferrer" class="shrink-0 font-mono text-xs px-4 py-2.5 border border-base-border hover:border-tech-cyan text-slate-300 hover:text-tech-cyan transition-colors bg-base-950 flex items-center gap-2">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                        <span>Open in Google Maps &rarr;</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Bottom Terminal Bar -->
+            <div class="border-t border-base-border pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-mono text-xs text-slate-500">
+                <div>
+                    <span class="text-white font-semibold">Ahmad Alief Maulana Putra</span> &bull; Kota Bukittinggi &bull; Universitas Andalas
+                </div>
+                <div class="flex items-center gap-4">
+                    <span>HOSTED VIA GITHUB PAGES</span>
+                    <a href="#hero" class="text-tech-cyan hover:underline">&uarr; TOP</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
 </body>
 </html>
