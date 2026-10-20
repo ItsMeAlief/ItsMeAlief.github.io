@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curriculum Vitae - Ahmad Alief Maulana Putra</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0a1128;       /* Deep executive navy */
+            --accent: #0284c7;        /* Engineering cyan-blue */
+            --text-dark: #1e293b;     /* Primary text */
+            --text-muted: #334155;    /* Secondary text */
+            --text-light: #64748b;    /* Light metadata */
+            --line-dark: #0f172a;     /* Section rule */
+            --line-subtle: #e2e8f0;   /* Inner rule */
+            --bg-pill: #f8fafc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            color: var(--text-dark);
+            background-color: #cbd5e1;
+            line-height: 1.36;
+            font-size: 8.6pt;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Top Action Bar for web viewing */
+        .no-print-bar {
+            background: #0f172a;
+            color: #ffffff;
+            padding: 10px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .no-print-bar .title {
+            font-weight: 700;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .no-print-bar .actions {
+            display: flex;
+            gap: 10px;
+        }
+        .btn-action {
+            background: #0284c7;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 12px;
+            padding: 6px 14px;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            border: none;
+            transition: all 0.15s ease;
+        }
+        .btn-action:hover {
+            background: #0369a1;
+        }
+        .btn-action.secondary {
+            background: #334155;
+            color: #ffffff;
+        }
+        .btn-action.secondary:hover {
+            background: #475569;
+        }
+
+        /* A4 Page Container (Strict 1-Page A4 Proportion) */
+        .cv-wrapper {
+            width: 210mm;
+            max-width: 210mm;
+            margin: 18px auto 25px auto;
+            background: #ffffff;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.12), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            padding: 11mm 15mm 10mm 15mm;
+            box-sizing: border-box;
+        }
+
+        /* Header Section */
+        header {
+            border-bottom: 2px solid var(--line-dark);
+            padding-bottom: 8px;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .name-role h1 {
+            font-size: 18.5pt;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+            color: var(--primary);
+            line-height: 1.1;
+            text-transform: uppercase;
+        }
+
+        .name-role .title-sub {
+            font-size: 9.5pt;
+            font-weight: 600;
+            color: var(--accent);
+            margin-top: 3px;
+            letter-spacing: 0.15px;
+        }
+
+        .name-role .institution {
+            font-size: 8.4pt;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-top: 1.5px;
+        }
+
+        /* Balanced 2-Row Contact Metadata */
+        .contact-container {
+            margin-top: 6px;
+            padding-top: 6px;
+            border-top: 1px solid var(--line-subtle);
+            font-size: 8.2pt;
+            color: var(--text-muted);
+            line-height: 1.45;
+        }
+
+        .contact-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 5px 12px;
+        }
+
+        .contact-row span.bullet {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 7pt;
+        }
+
+        .contact-container a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .contact-container a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+
+        .contact-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 7.4pt;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+        }
+
+        /* Section Formatting */
+        section {
+            margin-bottom: 8px;
+        }
+        section:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1.5px solid var(--line-dark);
+            padding-bottom: 2px;
+            margin-bottom: 5px;
+        }
+
+        .section-title {
+            font-size: 9.2pt;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+            color: var(--primary);
+        }
+
+        .section-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 7pt;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 0.3px;
+        }
+
+        /* Summary Text */
+        .summary-text {
+            font-size: 8.4pt;
+            line-height: 1.4;
+            color: var(--text-dark);
+            text-align: justify;
+        }
+
+        /* Education */
+        .edu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 2px;
+        }
+
+        .edu-degree {
+            font-size: 8.8pt;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .edu-school {
+            font-size: 8.6pt;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .edu-meta {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 7.8pt;
+            color: var(--text-light);
+            text-align: right;
+        }
+
+        /* Skills Matrix */
+        .skills-list {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            font-size: 8.2pt;
+        }
+
+        .skill-row {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            line-height: 1.35;
+        }
+
+        .skill-category {
+            min-width: 140px;
+            max-width: 140px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 7.5pt;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            flex-shrink: 0;
+        }
+
+        .skill-content {
+            color: var(--text-dark);
+            flex-grow: 1;
+        }
+
+        .skill-content strong {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Projects Section */
+        .proj-block {
+            margin-bottom: 6px;
+        }
+        .proj-block:last-child {
+            margin-bottom: 0;
+        }
+
+        .proj-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 1.5px;
+        }
+
+        .proj-title {
+            font-size: 8.8pt;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .proj-meta {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 7.4pt;
+            color: var(--text-light);
+            text-align: right;
+            white-space: nowrap;
+        }
+
+        .proj-subline {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 2px;
+        }
+
+        .proj-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 6.6pt;
+            font-weight: 700;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 1px 4px;
+            border-radius: 2px;
+            text-transform: uppercase;
+            letter-spacing: 0.2px;
+        }
+
+        .proj-tools {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 7.4pt;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Bullet Points */
+        ul.bullet-list {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 1.5px;
+        }
+
+        ul.bullet-list li {
+            position: relative;
+            padding-left: 12px;
+            margin-bottom: 1px;
+            font-size: 8.2pt;
+            line-height: 1.34;
+            color: var(--text-dark);
+        }
+
+        ul.bullet-list li::before {
+            content: "•";
+            position: absolute;
+            left: 2px;
+            top: 0px;
+            color: var(--accent);
+            font-size: 8pt;
+            font-weight: 700;
+        }
+
+        ul.bullet-list li strong {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* Footer Grid: Core Attributes & Info */
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 10px;
+            background: var(--bg-pill);
+            padding: 5px 10px;
+            border-left: 3px solid var(--accent);
+            font-size: 8pt;
+            line-height: 1.34;
+            margin-top: 2px;
+        }
+
+        .footer-col-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 7.2pt;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 1.5px;
+        }
+
+        /* Strict Print Styles (1 Exact Page A4) */
+        @media print {
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
+                font-size: 8.2pt !important;
+                line-height: 1.32 !important;
+            }
+            .no-print-bar {
+                display: none !important;
+            }
+            .cv-wrapper {
+                margin: 0 !important;
+                padding: 0 !important;
+                box-shadow: none !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                min-height: auto !important;
+            }
+            header {
+                padding-bottom: 6px !important;
+                margin-bottom: 6px !important;
+            }
+            .name-role h1 {
+                font-size: 17.5pt !important;
+            }
+            section {
+                margin-bottom: 6px !important;
+            }
+            .summary-text {
+                font-size: 8.1pt !important;
+                line-height: 1.35 !important;
+            }
+            .skills-list {
+                gap: 2px !important;
+                font-size: 7.9pt !important;
+            }
+            .proj-block {
+                margin-bottom: 5px !important;
+            }
+            ul.bullet-list li {
+                font-size: 7.9pt !important;
+                line-height: 1.3 !important;
+                margin-bottom: 1px !important;
+            }
+            .footer-grid {
+                padding: 4px 8px !important;
+                font-size: 7.8pt !important;
+                line-height: 1.3 !important;
+                background: #f8fafc !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            a {
+                text-decoration: none !important;
+                color: inherit !important;
+            }
+            .proj-badge {
+                background: #f1f5f9 !important;
+                color: #0f172a !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            @page {
+                size: A4 portrait;
+                margin: 8mm 11mm 8mm 11mm;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Web Utility Bar (Hidden during PDF print) -->
+    <div class="no-print-bar">
+        <div class="title">
+            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            <span>Curriculum Vitae &bull; Ahmad Alief Maulana Putra</span>
+        </div>
+        <div class="actions">
+            <button onclick="window.print()" class="btn-action">
+                <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+                <span>Print / Save as PDF</span>
+            </button>
+            <a href="index.html" class="btn-action secondary">
+                <span>&larr; Portfolio</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Printable CV Document (Strict 1-Page A4) -->
+    <div class="cv-wrapper">
+
+        <!-- HEADER -->
+        <header>
+            <div class="name-role">
+                <h1>Ahmad Alief Maulana Putra</h1>
+                <div class="title-sub">Engineering Student &bull; Hardware Development & Embedded Systems Enthusiast</div>
+                <div class="institution">Departemen Teknik Sipil &bull; Fakultas Teknik &bull; Universitas Andalas</div>
+            </div>
+
+            <!-- Balanced 2-Row Contact Bar -->
+            <div class="contact-container">
+                <div class="contact-row">
+                    <span>Bukittinggi, Sumatera Barat 26117</span>
+                    <span class="bullet">&bull;</span>
+                    <span>WA/Tel: <a href="https://wa.me/6285789539506">+62 857-8953-9506</a></span>
+                    <span class="bullet">&bull;</span>
+                    <span>Email: <a href="mailto:aaliefmp@gmail.com">aaliefmp@gmail.com</a></span>
+                </div>
+                <div class="contact-row" style="margin-top: 3px;">
+                    <span>Portfolio: <a href="https://itsmealief.github.io" target="_blank">itsmealief.github.io</a></span>
+                    <span class="bullet">&bull;</span>
+                    <span>GitHub: <a href="https://github.com/ItsMeAlief" target="_blank">github.com/ItsMeAlief</a></span>
+                    <span class="bullet">&bull;</span>
+                    <span>Instagram: <a href="https://instagram.com/a.alief_" target="_blank">@a.alief_</a></span>
+                </div>
+            </div>
+        </header>
+
+        <!-- 01. PROFILE SUMMARY -->
+        <section>
+            <div class="section-header">
+                <span class="section-title">Ringkasan Profesional</span>
+                <span class="section-tag">ENGINEERING PROFILE</span>
+            </div>
+            <p class="summary-text">
+                Mahasiswa Teknik Universitas Andalas dengan fokus keahlian interdisipliner: memadukan analisis mekanika struktural & pemodelan CAD/BIM dengan perancangan sistem fisik-digital (<em>embedded electronics</em>, skematik & layout PCB pada KiCAD, <em>firmware</em> STM32, dan avionik UAV). Berpengalaman merakit dan menala wahana terbang tanpa awak (Betaflight & ArduPilot/PX4), kalibrasi respon kontrol PID, serta pengujian perangkat keras secara empiris berbasis prinsip <em>first-principles</em> dan kalkulasi rekayasa yang presisi.
+            </p>
+        </section>
+
+        <!-- 02. EDUCATION -->
+        <section>
+            <div class="section-header">
+                <span class="section-title">Pendidikan Formal</span>
+                <span class="section-tag">EDUCATION</span>
+            </div>
+            <div class="edu-header">
+                <div>
+                    <span class="edu-degree">Sarjana (S1) Rekayasa Sipil</span> &mdash; 
+                    <span class="edu-school">Universitas Andalas</span>
+                </div>
+                <div class="edu-meta">Padang, Sumatera Barat &bull; Aktif</div>
+            </div>
+            <ul class="bullet-list">
+                <li>Mempelajari mekanika rekayasa, kekuatan bahan, mekanika fluida & hidrologi, rekayasa struktur beton dan baja, serta manajemen konstruksi.</li>
+                <li>Mengintegrasikan analisis struktural dengan pemodelan komputasi digital (FEM/BIM) serta eksplorasi instrumentasi dan monitoring sensor lapangan.</li>
+            </ul>
+        </section>
+
+        <!-- 03. TECHNICAL STACK MATRIX -->
+        <section>
+            <div class="section-header">
+                <span class="section-title">Keahlian Teknis & Software Toolchain</span>
+                <span class="section-tag">TECHNICAL SKILLS</span>
+            </div>
+            <div class="skills-list">
+                <div class="skill-row">
+                    <div class="skill-category">CAD & Structural:</div>
+                    <div class="skill-content">
+                        <strong>Autodesk AutoCAD</strong>, <strong>Autodesk Revit</strong>, <strong>Fusion 360</strong>, <strong>SolidWorks</strong>, <strong>SAP2000</strong>, <strong>ETABS</strong> (Pemodelan 2D/3D, BIM, analisis beban gempa & angin, analisis elemen hingga / FEA, toleransi fabrikasi mekanik).
+                    </div>
+                </div>
+                <div class="skill-row">
+                    <div class="skill-category">Embedded & PCB:</div>
+                    <div class="skill-content">
+                        <strong>KiCAD EDA</strong>, <strong>STM32CubeIDE</strong>, Embedded C/C++, ARM Cortex-M (Skematik sirkuit, routing sinyal & daya, perakitan solder SMD/THT, interfacing protokol I2C/SPI/UART/PWM, diagnostik osiloskop & logic analyzer).
+                    </div>
+                </div>
+                <div class="skill-row">
+                    <div class="skill-category">UAV & Autonomous:</div>
+                    <div class="skill-content">
+                        <strong>Betaflight Configurator</strong>, <strong>ArduPilot / PX4 Autopilot</strong>, Mission Planner, QGroundControl (Perakitan electromechanical drone, tuning respon PID filter penerbangan, integrasi GPS telemetri RF, manajemen daya LiPo).
+                    </div>
+                </div>
+                <div class="skill-row">
+                    <div class="skill-category">Office & Computation:</div>
+                    <div class="skill-content">
+                        <strong>Microsoft Excel</strong> (Advanced formulas, kalkulasi rekayasa, estimasi biaya/RAB), <strong>Microsoft Word</strong> (Dokumentasi spesifikasi teknis & laporan formal), Git / GitHub (Version control).
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 04. PROJECTS & TECHNICAL EXPERIENCE -->
+        <section>
+            <div class="section-header">
+                <span class="section-title">Pengalaman Rekayasa & Proyek Terpilih</span>
+                <span class="section-tag">ENGINEERING PROJECTS</span>
+            </div>
+
+            <!-- Project 1 -->
+            <div class="proj-block">
+                <div class="proj-header">
+                    <span class="proj-title">1. Custom UAV Platform & Autonomous Flight Control Integration</span>
+                    <span class="proj-meta">Proyek Mandiri &bull; Berkelanjutan</span>
+                </div>
+                <div class="proj-subline">
+                    <span class="proj-badge">TOOLCHAIN</span>
+                    <span class="proj-tools">Betaflight &bull; ArduPilot / PX4 &bull; Fusion 360 &bull; RF Telemetry &bull; LiPo Systems</span>
+                </div>
+                <ul class="bullet-list">
+                    <li>Merancang dan merakit platform wahana tanpa awak (UAV/drone) dari komponen modular: rangka mekanikal, sistem motor brushless, power distribution board (PDB), dan avionik navigasi IMU/GPS.</li>
+                    <li>Melakukan kalibrasi dinamika penerbangan, tuning respon <em>PID control loop</em>, integrasi telemetri telekomunikasi jarak jauh, serta pengujian sistem fail-safe otonom.</li>
+                    <li>Mengevaluasi batas getaran mekanis struktural, stabilitas aerodinamika, dan efisiensi konsumsi daya motor pada berbagai profil manuver.</li>
+                </ul>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="proj-block">
+                <div class="proj-header">
+                    <span class="proj-title">2. Embedded Electronics & Hardware Controller Prototyping</span>
+                    <span class="proj-meta">Proyek Riset & Instrumentasi</span>
+                </div>
+                <div class="proj-subline">
+                    <span class="proj-badge">TOOLCHAIN</span>
+                    <span class="proj-tools">KiCAD &bull; STM32CubeIDE &bull; Hardware Diagnostics &bull; C/C++ Embedded</span>
+                </div>
+                <ul class="bullet-list">
+                    <li>Merancang skematik sirkuit elektronika dan layout PCB dua sisi pada KiCAD dengan optimasi ground plane, pemisahan sinyal sensitif, dan disipasi termal komponen daya.</li>
+                    <li>Mengembangkan firmware berbasis mikrokontroler STM32 (ARM Cortex) untuk akuisisi sinyal sensorik real-time, kontrol aktuator presisi, dan transmisi data serial berkecepatan tinggi.</li>
+                    <li>Melakukan <em>bench-testing</em> perangkat keras: inspeksi kontinuitas jalur PCB, verifikasi solder SMD, analisis integritas rel tegangan, dan peredaman interferensi (*noise decoupling*).</li>
+                </ul>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="proj-block">
+                <div class="proj-header">
+                    <span class="proj-title">3. Pemodelan Struktur, Analisis Elemen Hingga & Gambar Kerja CAD</span>
+                    <span class="proj-meta">Studi Rekayasa & Perancangan</span>
+                </div>
+                <div class="proj-subline">
+                    <span class="proj-badge">TOOLCHAIN</span>
+                    <span class="proj-tools">AutoCAD &bull; Revit &bull; SAP2000 / ETABS &bull; SolidWorks &bull; MS Excel</span>
+                </div>
+                <ul class="bullet-list">
+                    <li>Mengembangkan gambar kerja rekayasa 2D dan permodelan 3D parametrik untuk komponen struktural dan mekanikal dengan standar toleransi fabrikasi teruji.</li>
+                    <li>Melakukan simulasi pembebanan struktur statik dan dinamik menggunakan SAP2000/ETABS guna menganalisis momen lentur, gaya aksial-geser, dan defleksi batas layan.</li>
+                    <li>Menyusun lembar otomasi kalkulasi teknik dan estimasi volume kebutuhan material konstruksi terintegrasi berbasis Microsoft Excel.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 05. CORE ATTRIBUTES & ADDITIONAL INFO -->
+        <section>
+            <div class="section-header">
+                <span class="section-title">Karakter Kerja & Informasi Tambahan</span>
+                <span class="section-tag">ATTRIBUTES & INFO</span>
+            </div>
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-col-title">Metodologi Rekayasa & Karakter Kerja:</div>
+                    <div><em>First-Principles Thinking</em>, investigasi akar masalah (<em>root-cause isolation</em>), pengujian eksperimental empiris terukur, dan dokumentasi teknis sistematis.</div>
+                </div>
+                <div>
+                    <div class="footer-col-title">Bahasa & Ketersediaan Proyek:</div>
+                    <div><strong>Bahasa:</strong> Bahasa Indonesia (Native), English (Technical & Professional Proficiency).<br>Terbuka untuk kolaborasi On-site maupun Remote Engineering.</div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>

@@ -1,21 +1,28 @@
 # Panduan Deployment GitHub Pages untuk Ahmad Alief Maulana Putra
 
-Website portofolio bergaya **Neo-Brutalism Sharp** ini siap di-host langsung ke **GitHub Pages** di bawah akun GitHub Anda: **[@ItsMeAlief](https://github.com/ItsMeAlief)**.
+Website portofolio profesional bergaya **Neo-Brutalism Sharp** ini siap di-host langsung ke **GitHub Pages** di bawah akun GitHub Anda: **[@ItsMeAlief](https://github.com/ItsMeAlief)**.
 
 Domain website Anda:
 👉 **`https://itsmealief.github.io`**
 
 ---
 
-## 📁 Berkas di Folder Website (100% Legal & Ringan):
-1. [`index.html`](./index.html) *(Halaman website utama dengan Spotify Player "Kendrick Lamar - Alright")*
-2. [`Me.jpg`](./Me.jpg) *(Foto profil Anda)*
-3. [`README.md`](./README.md) *(Dokumen panduan)*
+## 📁 Berkas di Folder Website:
+1. [`index.html`](./index.html) *(Halaman website portofolio utama)*
+2. [`cv.html`](./cv.html) *(Halaman Curriculum Vitae resmi versi Web/Print)*
+3. [`CV_Ahmad_Alief_Maulana_Putra.pdf`](./CV_Ahmad_Alief_Maulana_Putra.pdf) *(Berkas resmi PDF Curriculum Vitae standar ATS, siap unduh)*
+4. [`Me.jpg`](./Me.jpg) *(Foto profil Anda)*
+5. [`README.md`](./README.md) *(Dokumen panduan deployment)*
 
-> **Mengapa Menggunakan Spotify Embed Resmi untuk "Alright"?**  
-> Lagu **"Alright"** oleh Kendrick Lamar (Track ID: `3iVcZ5G6tvkXZkZKlMpIUs`) langsung terintegrasi secara resmi melalui Spotify Embed Player.  
-> - **100% Legal:** Tidak melanggar DMCA atau hak cipta di GitHub Pages.  
-> - **Catatan Saat Dites di Komputer Lokal:** Jika Anda membuka `index.html` langsung dari file Explorer (`file:///...`), browser terkadang menampilkan proteksi cross-origin dari Spotify. Namun begitu website diunggah ke `https://itsmealief.github.io`, pemutar Spotify akan berjalan 100% normal dan lancar!
+---
+
+## 🛠️ Tech Stack & Software yang Ditampilkan di Website:
+- **Civil Engineering & BIM:** Autodesk AutoCAD, Autodesk Revit, SAP2000 / Etabs
+- **Mechanical 3D & Prototyping:** Fusion 360 / SolidWorks, 3D Printing (FDM) & Slicers
+- **Electronics & Embedded:** KiCAD, STM32CubeIDE, ESP-IDF & Arduino C++
+- **UAV, Drones & Autonomous Robotics:** Betaflight, ArduPilot / PX4, Telemetry Radio & ESCs
+- **Programming & Automation:** Python (Data/Automation scripts), Embedded C/C++
+- **Technical Documentation & Computation:** Microsoft Word, Microsoft Excel
 
 ---
 
@@ -30,7 +37,7 @@ Domain website Anda:
 3. Pilih **Public**.
 4. Klik **Create repository**.
 5. Di halaman repository yang baru saja dibuat, klik link **"uploading an existing file"**.
-6. Seret berkas ini: [`index.html`](./index.html), [`Me.jpg`](./Me.jpg), dan [`README.md`](./README.md) ke browser.
+6. Seret berkas ini: [`index.html`](./index.html), [`Me.jpg`](./Me.jpg), dan `CV_Ahmad_Alief_Maulana_Putra.pdf` (jika sudah ada) ke browser.
 7. Klik tombol hijau **Commit changes**.
 8. Buka tab **Settings** > **Pages** (di sidebar kiri):
    - Pastikan **Source** adalah `Deploy from a branch`
@@ -46,7 +53,8 @@ Jalankan perintah ini di PowerShell pada folder ini:
 cd "C:\Users\ahmad\.gemini\antigravity\scratch\portfolio-github-io"
 git init
 git add index.html Me.jpg README.md
-git commit -m "feat: neo-brutalism portfolio with spotify alright player & kendrick lamar quote"
+# Jika ada file CV: git add CV_Ahmad_Alief_Maulana_Putra.pdf
+git commit -m "feat: neo-brutalism portfolio with tech stack, cv download & spotify player"
 git branch -M main
 git remote add origin https://github.com/ItsMeAlief/ItsMeAlief.github.io.git
 git push -u origin main
@@ -57,6 +65,7 @@ git push -u origin main
 ## 📇 Data, Musik & Kontak di Website:
 - **Nama:** Ahmad Alief Maulana Putra
 - **Foto Profil:** `Me.jpg`
+- **Fokus Interdisipliner:** Civil Infrastructure & Structural Mechanics + Embedded Hardware, IoT & UAV/Drone Engineering
 - **Genre Musik Favorit:** **Rap / Hip-Hop**
 - **Life & Engineering Anthem:** *"If God got us then we gon' be alright"* — Kendrick Lamar (*Alright*, 2015)
 - **Official Spotify Player:** *Kendrick Lamar - Alright* (ID: `3iVcZ5G6tvkXZkZKlMpIUs`)
